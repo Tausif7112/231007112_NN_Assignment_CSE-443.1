@@ -1,4 +1,3 @@
-```markdown
 # Pneumonia Detection: A Chest X-Ray Classification Project
 
 ## Overview
@@ -29,7 +28,7 @@ The dataset link is attached here:
 
 My approach was basically effective model development and robust evaluation:
 
-1.  **Initial Exploration (EDA):** First, I really dug into the dataset to understand its characteristics, including class distribution, image dimensions, and potential issues like class imbalance or small validation sets.
+1.  **Exploratory Data Analysis (EDA):** First, I really dug into the dataset to understand its characteristics, including class distribution, image dimensions, and potential issues like class imbalance or small validation sets.
 2.  **Preprocessing & Augmentation:** Next, I prepared the images for the CNN by resizing, normalizing pixel values, and applying data augmentation techniques to the training data to make the model more robust.
 3.  **Data Re-splitting:** Recognizing the limitations of the original validation set, I re-split the data to create more representative training, validation, and test sets.
 4.  **Addressing Imbalance:** To counter class imbalance, I calculated and applied class weights during training.
@@ -40,7 +39,7 @@ My approach was basically effective model development and robust evaluation:
 
 Here's a detailed breakdown of the steps I followed:
 
-### 1. First Look at the Data (EDA)
+### 1. EDA
 
 Before diving into building the model, I spent some time getting to know the data. This involved:
 
@@ -49,7 +48,7 @@ Before diving into building the model, I spent some time getting to know the dat
 *   **Sample Previews:**  displayed a few sample X-ray images to get a qualitative feel for the data.
 *   **Image Stats:** I analyzed image widths, heights, and aspect ratios to understand their distributions.
 
-### 2. Getting the Images Ready (Preprocessing)
+### 2. Preprocessing
 
 CNNs like their input images to be a consistent size, so I had to do some prep work:
 
@@ -57,7 +56,7 @@ CNNs like their input images to be a consistent size, so I had to do some prep w
 *   **Pixel Scaling:** I used `ImageDataGenerator(rescale=1./255)` to scale pixel values from 0-255 down to 0-1. This helps the model learn faster and more smoothly.
 *   **Data Augmentation (for Training):** To make my model more robust and prevent it from just memorizing the training images, I used techniques like `rotation_range=20`, `width_shift_range=0.1`, `height_shift_range=0.1`, `shear_range=0.1`, `zoom_range=0.1`, and `horizontal_flip=True`. This created slightly different versions of the training images. Importantly, I *only* applied this to the training data; validation and test sets were only rescaled.
 
-### 3. Re-splitting the Data (Because the Val Set Was Too Small!)
+### 3. Re-splitting the Data 
 
 Since that original validation set was so tiny and hard to trust, I decided to reshuffle things:
 
@@ -80,7 +79,7 @@ I started with a pretty standard CNN setup using `tf.keras.models.Sequential`:
 *   Dense Layers: A `Dense(128, activation='relu')` for a hidden layer and `Dropout(0.5)` to help prevent overfitting.
 *   Output Layer: A final `Dense(1, activation='sigmoid')` for binary classification.
 
-I compiled it using `optimizer='adam'`, `loss='binary_crossentropy'`, and `metrics=['accuracy', tf.keras.metrics.Precision(), tf.keras.metrics.Recall(), tf.keras.metrics.AUC()]`. I used `EarlyStopping(monitor='val_loss', patience=5)` and `ModelCheckpoint('best_model.keras', monitor='val_loss', save_best_only=True)`.
+I compiled it using `optimizer='adam'`, `loss='binary_crossentropy'`, and `metrics=['accuracy', tf.keras.metrics.Precision(), tf.keras.metrics.Recall(), tf.keras.metrics.AUC()]`. I used `EarlyStopping(monitor='val_loss', patience=5)` and `ModelCheckpoint('best_model.keras', monitor='val_loss', save_best_only=True)` to stop at early epoch if consequent 5 times no improvement is shown in validation loss.
 
 #### The Improved CNN Model
 
@@ -115,8 +114,10 @@ This first model showed clear signs of **overfitting**:
     *   AUC: **0.9253**
 *   **Confusion Matrix:** 62 False Positives (healthy misdiagnosed as Pneumonia) and 30 False Negatives (Pneumonia cases missed). The good recall was positive, but overfitting was a major concern.
 
-![Initial Overfitting Plot](/content/Initial_overfitting.png)
-*Figure 1: Initial Model's Training History showing signs of overfitting.*
+<img width="1000" height="411" alt="Initial_overfitting" src="https://github.com/user-attachments/assets/74597c0d-722e-43f3-8772-d31b0385333c" />
+<p align="center">
+  <em>Figure 1: Initial Model's Training History showing signs of overfitting.</em>
+</p>
 
 ### Improved CNN Model Performance & Observations:
 
@@ -131,13 +132,15 @@ After re-splitting data, applying class weights, Batch Normalization, and L2 reg
 
 **Key Trade-offs Observed:**
 
-*   **Fewer Missed Pneumonia Cases (Excellent!):** False Negatives (FN) dramatically reduced from 30 to just **5**. This is crucial in a medical context, as missing a diagnosis can have severe consequences.
-*   **More False Alarms (A Trade-off):** False Positives (FP) increased from 62 to **139**. This means the model was more likely to incorrectly label a healthy individual as having Pneumonia. While not ideal, false positives are often preferred over false negatives in initial diagnostic screenings, as they can be clarified with further tests.
+*   **Fewer Missed Pneumonia Cases :** False Negatives (FN) dramatically reduced from 30 to just **5**. This is crucial in a medical context, as missing a diagnosis can have severe consequences.
+*   **More False Alarms :** False Positives (FP) increased from 62 to **139**. This means the model was more likely to incorrectly label a healthy individual as having Pneumonia. While not ideal, false positives are often preferred over false negatives in initial diagnostic screenings, as they can be clarified with further tests.
 
 Overall accuracy dipped slightly due to the increase in false positives. The combination of class weights and regularization made the model extremely cautious about missing any Pneumonia cases.
 
-![Improved Model Overfitting Plot](/content/last_overfitpng.png)
-*Figure 2: Improved Model's Training History showing better stability with regularization and balanced data.*
+<img width="747" height="302" alt="last_overfitpng" src="https://github.com/user-attachments/assets/7ad14da4-c23b-46be-8769-3f5465d31240" />
+<p align="center">
+  <em>Figure 2: Improved Model's Training History showing better stability with regularization and balanced data.</em>
+</p>
 
 ### Threshold Adjustment Findings:
 
@@ -150,23 +153,4 @@ I found that setting the classification threshold to **0.70** provided a better 
 
 This adjustment significantly reduced false positives (from 139 to 79) while maintaining a very high recall. The "best" threshold ultimately depends on the specific clinical priority – whether minimizing false alarms or ensuring no case is missed is more critical.
 
-## What I Learned & What's Next
 
-This project was a cool journey in building and tweaking a CNN model. The initial model had some overfitting issues, partly due to a small validation set. But by re-splitting the data, adding Batch Normalization and L2 regularization, and using class weights, I got a model that was much better at not missing actual Pneumonia cases. The trade-off was a few more false alarms, but I found a good balance by adjusting the classification threshold.
-
-**If I had more time, I'd totally try these things:**
-
-*   **Transfer Learning:** Using powerful pre-trained models like VGG16 or ResNet50 (which are already good at seeing things in images) could give us a big performance boost.
-*   **Smarter Augmentation:** Exploring more advanced ways to augment medical images.
-*   **Hyperparameter Tuning:** Systematically playing around with different settings for the model and optimizer to find the absolute best combination.
-*   **Explainable AI (XAI):** It would be awesome to understand *why* the model makes certain predictions, especially for medical stuff. This would build a lot more trust!
-
-## How to Run This Project Yourself
-
-Want to see it in action? Here's how:
-
-1.  **Get the Code:** Grab this project from its Git repository.
-2.  **Open in Colab:** Upload the `.ipynb` notebook file to Google Colab.
-3.  **Run Everything:** Just go through and execute all the code cells from top to bottom. It'll handle all the setup, data download, training, and evaluation for you.
-4.  **Check the Results:** Look at the outputs, graphs, and confusion matrices to see how the model performed at each stage.
-```
