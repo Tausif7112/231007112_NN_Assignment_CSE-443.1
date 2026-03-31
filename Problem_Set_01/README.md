@@ -151,6 +151,9 @@ I found that setting the classification threshold to **0.70** provided a better 
 *   Recall (Pneumonia): **0.9648**
 *   F1-Score: **0.8737**
 
-This adjustment significantly reduced false positives (from 139 to 79) while maintaining a very high recall. The "best" threshold ultimately depends on the specific clinical priority – whether minimizing false alarms or ensuring no case is missed is more critical.
+<img width="843" height="695" alt="confusion_matrix_final" src="https://github.com/user-attachments/assets/f9f726ee-9237-446c-9101-e427aa185fa4" />
+<p align="center">
+  <em>Figure 3: Confusion Matrix after adjusting threshold to 0.7 in Improved Model.</em>
+</p>
 
-
+This adjustment significantly reduced false positives (from 139 to 97) while maintaining a very high recall. The "best" threshold ultimately depends on the specific clinical priority – whether minimizing false alarms or ensuring no case is missed is more critical.
