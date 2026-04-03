@@ -9,7 +9,7 @@ For this problem set, our goal was to build a machine learning model for a banki
 
 We used the "Bank Marketing Data Set," which contains 17 attributes about past customers. This dataset includes details like age, job, marital status, education, account balance, and campaign-related information, ultimately culminating in whether the customer subscribed to a term deposit or not ('y' - yes/no).
 
-The dataset can be downloaded from this Google Drive link: [Bank Marketing Data Set (Google Drive)](`https://drive.google.com/file/d/1Jg0hqQQBOAt3GevTYh9SVXB7tZWlAQ_Q/view?usp=drive_link`)
+The dataset can be downloaded from this Google Drive link: [Bank Marketing Data Set (Google Drive)](https://drive.google.com/file/d/1Jg0hqQQBOAt3GevTYh9SVXB7tZWlAQ_Q/view?usp=drive_link)
 
 ## Approach
 
