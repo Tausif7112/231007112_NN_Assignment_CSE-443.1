@@ -92,21 +92,18 @@ With our insights from EDA, we prepared the data for modeling:
     *   **Classification Report:** Providing precision, recall, f1-score, and support for both classes.
     *   **ROC AUC Score:** A measure of the model's ability to distinguish between classes.
     *   **Confusion Matrix:** Visualizing true positives, true negatives, false positives, and false negatives.
-<p align="center">
-<img width="555" height="462" alt="Confusion-matrix(initial model)" src="https://github.com/user-attachments/assets/f549adea-048b-429c-9c62-473f66f1cdf3" />
-</p>
-<p align="center">
-  <em>Figure 6: Confusion Matrix for Initial Best Model.  </em>
-</p>
+        <p align="center">
+        <img width="555" height="462" alt="Confusion-matrix(initial model)" src="https://github.com/user-attachments/assets/f549adea-048b-429c-9c62-473f66f1cdf3" />
+        </p>
+        <p align="center"><em>Figure 6: Confusion Matrix for Initial Best Model.  </em></p>
         
 
     *   **ROC Curve:** Plotting the Receiver Operating Characteristic curve.
-<p align="center">
-<img width="715" height="461" alt="ROC(initial model)" src="https://github.com/user-attachments/assets/52330da4-eaae-49ae-9fbd-3cb61638be2f" />
-</p>
-<p align="center">
-  <em>Figure 7: ROC Curve for Initial Best Model.  </em>
-</p>
+
+        <p align="center">
+        <img width="715" height="461" alt="ROC(initial model)" src="https://github.com/user-attachments/assets/52330da4-eaae-49ae-9fbd-3cb61638be2f" />
+        </p>
+         <p align="center"><em>Figure 7: ROC Curve for Initial Best Model.  </em></p>
 
     *   **Feature Importance:** Examined the coefficients of the Logistic Regression model to understand which features were most influential in predicting subscription.
          <img width="1422" height="791" alt="Feature-importance" src="https://github.com/user-attachments/assets/03b354ee-307e-4801-82d9-f7c9180c92a0" />
@@ -115,10 +112,9 @@ With our insights from EDA, we prepared the data for modeling:
          </p>
 
     *   **Learning Curve:** Plotted the learning curve to diagnose potential overfitting or underfitting (ours indicated some overfitting).
-<img width="862" height="543" alt="Learning curve" src="https://github.com/user-attachments/assets/5b301fa0-3085-4702-b1df-4e7c1acca1a3" />
-<p align="center">
-  <em>Figure 9: Learning Curve Plot for Logistic Regression.  </em>
-</p>
+    
+          <img width="862" height="543" alt="Learning curve" src="https://github.com/user-attachments/assets/5b301fa0-3085-4702-b1df-4e7c1acca1a3" />
+          <p align="center"><em>Figure 9: Learning Curve Plot for Logistic Regression.  </em></p>
          
 
 ### 4. Model Improvement Attempts
@@ -135,10 +131,12 @@ Given the initial results, especially the lower precision for the minority class
 Our analysis clearly showed that **optimizing the classification threshold was the most effective strategy** for improving our Logistic Regression model for this problem. It allowed us to significantly increase the precision for the 'yes' class from **0.41 to 0.45** and the F1-score from **0.51 to 0.52** for predicting 'yes' subscriptions, which is often crucial for business applications (e.g., reducing wasted marketing efforts).
 
 While other techniques like RFE, ADASYN, and Bagging were explored, they either didn't offer a substantial improvement or slightly degraded performance compared to our best approach (SMOTE-resampled data with an optimized classification threshold).
-<img width="728" height="220" alt="Comparison-Table" src="https://github.com/user-attachments/assets/187d72e7-f4b7-41dc-9a76-be43f10664b0" />
-<p align="center">
-  <em>Figure 10: Performance Comparison Table of all models.  </em>
-</p>
+    <p align="center">
+    <img width="728" height="220" alt="Comparison-Table" src="https://github.com/user-attachments/assets/187d72e7-f4b7-41dc-9a76-be43f10664b0" />
+    </p>
+    <p align="center">
+    <em>Figure 10: Performance Comparison Table of all models.  </em>
+    </p>
  
 
 ## Conclusion
