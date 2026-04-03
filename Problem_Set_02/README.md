@@ -13,7 +13,14 @@ The dataset can be downloaded from this Google Drive link: [Bank Marketing Data 
 
 ## Approach
 
-Our journey through this problem followed a standard machine learning pipeline, carefully considering each step. The overall approach involved Data Loading, Exploratory Data Analysis (EDA), Data Preprocessing, Model Training, and iterative Model Improvement, all aimed at building a robust Logistic Regression model.
+Our journey through this problem followed a standard machine learning pipeline, carefully considering each step. The overall approach involved:
+* Loading data
+* Exploratory Data Analysis (EDA),
+* Data Preprocessing
+* Model Training and
+* Iterative Model Improvement
+
+All aimed at building a robust Logistic Regression model.
 
 ## Methodology
 
