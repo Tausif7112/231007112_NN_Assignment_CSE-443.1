@@ -1,5 +1,5 @@
 
-# Problem Set 02: Predicting Term Deposit Subscription
+# Predicting Term Deposit Subscription
 
 ## Overview
 
