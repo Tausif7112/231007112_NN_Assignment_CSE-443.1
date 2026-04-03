@@ -66,8 +66,9 @@ We then dove into some visualizations to understand our data better:
  
 
 *   **Target Variable Distribution:** An important finding was the severe class imbalance, with far fewer 'yes' subscriptions than 'no's. This meant we'd need strategies to address it.
+<p align="center">
 <img width="576" height="383" alt="Count_target" src="https://github.com/user-attachments/assets/8eabdff9-18fd-4232-ba1f-5e6dd4ae92b5" />
-
+</p>
 <p align="center">
   <em>Figure 5: Count Plot of Target Variable Distribution .  </em>
 </p>
@@ -91,14 +92,18 @@ With our insights from EDA, we prepared the data for modeling:
     *   **Classification Report:** Providing precision, recall, f1-score, and support for both classes.
     *   **ROC AUC Score:** A measure of the model's ability to distinguish between classes.
     *   **Confusion Matrix:** Visualizing true positives, true negatives, false positives, and false negatives.
-         <img width="555" height="462" alt="Confusion-matrix(initial model)" src="https://github.com/user-attachments/assets/f549adea-048b-429c-9c62-473f66f1cdf3" />
+<p align="center">
+<img width="555" height="462" alt="Confusion-matrix(initial model)" src="https://github.com/user-attachments/assets/f549adea-048b-429c-9c62-473f66f1cdf3" />
+</p>
 <p align="center">
   <em>Figure 6: Confusion Matrix for Initial Best Model.  </em>
 </p>
         
 
     *   **ROC Curve:** Plotting the Receiver Operating Characteristic curve.
+<p align="center">
 <img width="715" height="461" alt="ROC(initial model)" src="https://github.com/user-attachments/assets/52330da4-eaae-49ae-9fbd-3cb61638be2f" />
+</p>
 <p align="center">
   <em>Figure 7: ROC Curve for Initial Best Model.  </em>
 </p>
